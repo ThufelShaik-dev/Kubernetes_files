@@ -21,11 +21,13 @@ kubectl version --short --client
 
 ---
 
+```
 sudo apt install unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
 aws --version
+```
 
 ---
 
@@ -33,9 +35,11 @@ aws --version
 
 ---
 
+```
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)\_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
+```
 
 ---
 
@@ -69,13 +73,18 @@ eksctl create cluster --name cluster-name
 ---
 
 EX: Mumbai region
+
+```
 eksctl create cluster --name thufel-cluster --region ap-south-1 --node-type t2.medium --zones ap-south-1a,ap-south-1b
+```
 
 ---
 
 ## Note: Cluster creation will take 10 to 15 mins of time (we have to wait). After cluster created we can check nodes using below command.Run this command in HOST VM gitbash terminal
 
+```
 kubectl get nodes
+```
 
 ## Note: We should be able to see EKS cluster nodes in gitbash terminal. we can also view worker nodes in EC2 instances running in aws console (shows ONE EKS-host-vm, TWO worker-nodes). thats all about EKS Setup in AWS.
 
@@ -85,6 +94,8 @@ kubectl get nodes
 
 ## Step - 4 : After practicing, delete Cluster and other resources we have used in AWS Cloud to avoid billing.
 
+```
 eksctl delete cluster --name thufel-cluster --region ap-south-1
+```
 
 ## note : Deleting the cluster will also take 10-15 mins.
