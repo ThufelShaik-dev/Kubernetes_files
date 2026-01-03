@@ -1,12 +1,10 @@
-####### HELM Charts ###########
+#### HELM Charts
 
 => Using HELM chart we can install promethues server
 
 => Using HELM chart we can install grafana server
 
-##################
-Helm Installation
-##################
+### Helm Installation
 
 ```
  curl -fsSl -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
@@ -47,7 +45,7 @@ helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
  helm upgrade --install metrics-server metrics-server/metrics-server
 ```
 
-#####Install Prometheus & Grafana In K8S Cluster using HELM#######
+## Install Prometheus & Grafana In K8S Cluster using HELM
 
 # Add the latest helm repository in Kubernetes
 
