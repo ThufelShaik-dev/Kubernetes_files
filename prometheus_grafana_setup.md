@@ -47,9 +47,7 @@ helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
  helm upgrade --install metrics-server metrics-server/metrics-server
 ```
 
-##########################################################
-Install Prometheus & Grafana In K8S Cluster using HELM
-##########################################################
+#####Install Prometheus & Grafana In K8S Cluster using HELM#######
 
 # Add the latest helm repository in Kubernetes
 
