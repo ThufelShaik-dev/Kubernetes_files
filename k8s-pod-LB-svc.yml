@@ -1,0 +1,64 @@
+#This Kubernetes YAML defines one Pod running a Java web application and one Service of type LoadBalancer that exposes the app to external users.
+---
+apiVersion: v1
+kind: Pod
+
+#1️⃣ Pod Definition (Application Runtime)
+#This above section creates a Pod, which is the smallest deployable unit in Kubernetes.
+# Purpose->  Run a Java web application container.Expose the app internally on port 8080.Attach labels so Services can find it
+#Uses Kubernetes core API (v1) and Creates a Pod
+
+metadata:
+  name: javawebapp-pod
+  labels:
+    app: javawebapp
+# name: Unique Pod name
+#labels: Key-value metadata
+#app: javawebapp is critical for Service selection
+
+spec:
+  containers:
+    - name: javawebapp-container
+      image: thufel18/java-web-app
+      ports:
+        - containerPort: 8080
+# containers: List of containers inside the Pod
+# image: Docker image pulled from Docker Hub
+# containerPort: App listens on port 8080
+# ✅ What happens at runtime
+# Kubernetes pulls the image->Starts the Java web app inside the container -> App is reachable inside the cluster on port 8080
+---
+# 2️⃣ Service Definition (Networking & Exposure)
+#This section creates a Service to expose the Pod.
+# Purpose->Provide a stable network endpoint
+# Expose the app outside the cluster using a cloud load balancer
+
+# Creates a Service resource
+apiVersion: v1
+kind: Service
+
+# Service name
+metadata:
+  name: javawebapp-svc
+
+# Creates an external Load Balancer
+# Assigns a public IP (cloud-dependent: AWS)
+spec:
+  type: LoadBalancer
+
+  # Connects Service → Pod using labels
+  # Routes traffic only to Pods with app=javawebapp
+  selector:
+    app: javawebapp
+
+  # port: External users access via port 80
+  #targetPort: Traffic forwarded to container’s 8080
+
+  ports:
+    - port: 80
+      targetPort: 8080
+
+
+# Traffic Flow
+# User → LoadBalancer IP:80 → Service → Pod → Container:8080
+
